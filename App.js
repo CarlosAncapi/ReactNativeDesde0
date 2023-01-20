@@ -1,56 +1,41 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, SectionList} from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
 
 
 export default function App() {
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(data => {
+      setUsers(data)
+      setLoading(false)
+    })
+  }, [])
+
+  if (loading) {
+    return <View style={styles.center}><Text>Cargando...</Text></View>
+  }
+
   return (
     <View style={styles.container}>
-      <SectionList
-        sections={[
-          {
-            title: 'Grupo 1',
-            data: [
-            { key: '1', name: 'carlos' },
-            { key: '2', name: 'pedrito' },
-            { key: '3', name: 'juan' },
-            { key: '4', name: 'vale' },
-            { key: '5', name: 'Vicky' },
-            { key: '6', name: 'cancerbero' },
-            { key: '7', name: 'carlos' },
-            { key: '8', name: 'pedrito' },
-            { key: '9', name: 'juan' },
-            { key: '10', name: 'vale' }
-            ]
-          },
-          {
-            title: 'Grupo 2',
-            data: [
-              { key: '11', name: 'Vicky' },
-              { key: '12', name: 'cancerbero' },
-              { key: '13', name: 'carlos' },
-              { key: '14', name: 'pedrito' },
-              { key: '15', name: 'juan' },
-              { key: '16', name: 'vale' },
-              { key: '17', name: 'Vicky' },
-              { key: '18', name: 'cancerbero' },
-              { key: '19', name: 'carlos' },
-              { key: '20', name: 'pedrito' },
-              { key: '21', name: 'juan' },
-              { key: '22', name: 'vale' },
-              { key: '23', name: 'Vicky' },
-              { key: '24', name: 'cancerbero' }
-            ]
-          }
-        ]}
+      <FlatList
+        data={users}
         renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
-        renderSectionHeader={({ section }) => <Text style={styles.section}>{section.title}</Text>}
+        keyExtractor={ item => String(item.id)}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-
+  center: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -65,18 +50,6 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
     textAlign: 'center'
-  },
-  section:{
-    fontSize: 24,
-    fontWeight: 'bold',
-    backgroundColor: '#eee',
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom:2,
-    textAlign: 'center'
+  }
 
-    }
-
-  
 });
