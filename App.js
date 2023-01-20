@@ -1,41 +1,19 @@
 import React, { useState, useEffect} from 'react';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { StyleSheet, ActivityIndicator, View} from 'react-native';
 
 
 export default function App() {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(data => {
-      setUsers(data)
-      setLoading(false)
-    })
-  }, [])
-
-  if (loading) {
-    return <View style={styles.center}><Text>Cargando...</Text></View>
-  }
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={users}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
-        keyExtractor={ item => String(item.id)}
-      />
+      <ActivityIndicator size="small" color="#0000f" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
+  
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -43,13 +21,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 22,
     
-  },
-  item: {
-    padding:10,
-    height:50,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-    textAlign: 'center'
   }
-
 });
