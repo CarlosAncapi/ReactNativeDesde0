@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, Button, 
+  TouchableHighlight, ScrollView } from 'react-native';
 
 //const { width, height} = Dimensions.get('window').width
 
@@ -8,7 +9,43 @@ export default function App() {
   const [submit, setSubmit] = useState('')
   return (
     <View style={styles.container}>
-      <Text style={{color: 'white', fontSize:24}}>Texto: {submit}</Text>
+      <ScrollView style={styles.scrollView}>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
+      <Text style={{ fontSize:24}}>Texto: {submit}</Text>
 
       <TextInput 
         style={styles.input} 
@@ -16,10 +53,16 @@ export default function App() {
         onChangeText={t => setText(t)}
         defaultValue={text}
         />
-        <Button onPress={() =>{
+        <TouchableHighlight
+          underlayColor={'#999'}
+          activeOpacity={0.2} 
+          onPress={() =>{
           setSubmit(text)
           alert('Texto enviado con éxito!')
-        }}title='Aceptar'/>
+        }}>
+        <Text>Aceptar</Text>
+        </TouchableHighlight>
+        </ScrollView>
     </View>
   );
 }
@@ -38,6 +81,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  scrollView: {
+    width : Dimensions.get('window').width
+  }
 });
 
 ///////
